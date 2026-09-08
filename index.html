@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lumiar 3D - Calculadora</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- CABEÇALHO -->
+
+        <header class="header">
+
+            <img src="imagens/logo.png" alt="Lumiar 3D" class="logo-imagem">
+
+            <div class="linha-rosa"></div>
+
+            <p>
+                Calculadora de custo e preço de impressão
+            </p>
+
+        </header>
+
+
+        <!-- ERRO -->
+
+        <div
+            id="mensagemErro"
+            class="erro">
+        </div>
+
+
+        <!-- GRID -->
+
+        <div class="grid-principal">
+
+
+            <!-- DADOS DA IMPRESSÃO -->
+
+            <section class="card">
+
+                <div class="card-header">
+
+                    <div class="icone">
+                        $
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Dados da impressão
+                        </h2>
+
+                        <p>
+                            Informe os dados para calcular
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILAMENTO -->
+
+                <div class="campo">
+
+                    <label for="filamento">
+                        Valor do filamento (R$/kg)
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-prefix">
+                            R$
+                        </span>
+
+                        <input
+                            type="text"
+                            id="filamento"
+                            placeholder="Ex.: 100,00"
+                            inputmode="decimal"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- GRAMAS -->
+
+                <div class="campo">
+
+                    <label for="gramas">
+                        Gramas utilizadas
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-prefix">
+                            g
+                        </span>
+
+                        <input
+                            type="text"
+                            id="gramas"
+                            placeholder="Ex.: 16"
+                            inputmode="decimal"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- TEMPO -->
+
+                <div class="campo">
+
+                    <label for="tempo">
+                        Tempo de impressão (minutos)
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-prefix">
+                            ⏱
+                        </span>
+
+                        <input
+                            type="text"
+                            id="tempo"
+                            placeholder="Ex.: 59"
+                            inputmode="numeric"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONFIGURAÇÕES -->
+
+                <div class="configuracoes">
+
+
+                    <div class="config">
+
+                        <strong>
+                            R$ 1,00
+                        </strong>
+
+                        <span>
+                            Energia/kWh
+                        </span>
+
+                    </div>
+
+
+                    <div class="config">
+
+                        <strong>
+                            R$ 2,00
+                        </strong>
+
+                        <span>
+                            Máquina/h
+                        </span>
+
+                    </div>
+
+
+                    <!-- MARGEM -->
+
+                    <div class="config config-margem">
+
+                        <label for="margemLucro">
+                            Margem de lucro
+                        </label>
+
+                        <select id="margemLucro">
+
+                            <option value="0.10">
+                                10%
+                            </option>
+
+                            <option value="0.20">
+                                20%
+                            </option>
+
+                            <option value="0.30">
+                                30%
+                            </option>
+
+                            <option value="0.40">
+                                40%
+                            </option>
+
+                            <option value="0.50">
+                                50%
+                            </option>
+
+                            <option value="0.60">
+                                60%
+                            </option>
+
+                            <option value="0.70">
+                                70%
+                            </option>
+
+                            <option value="0.80">
+                                80%
+                            </option>
+
+                            <option value="0.90">
+                                90%
+                            </option>
+
+                            <option value="0.99" selected>
+                                99%
+                            </option>
+
+                            <option value="1.00">
+                                100%
+                            </option>
+
+                            <option value="1.20">
+                                120%
+                            </option>
+
+                            <option value="1.50">
+                                150%
+                            </option>
+
+                            <option value="2.00">
+                                200%
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="botoes">
+
+                    <button
+                        class="btn-calcular"
+                        onclick="calcular()">
+
+                        CALCULAR
+
+                    </button>
+
+                    <button
+                        class="btn-limpar"
+                        onclick="limpar()">
+
+                        LIMPAR
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- RESULTADO -->
+
+            <section class="card resultado-card">
+
+
+                <div class="card-header">
+
+                    <div class="icone">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Resultado
+                        </h2>
+
+                        <p>
+                            Detalhamento dos custos
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="resultado-linhas">
+
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Filamento
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoFilamento">
+
+                            R$ 0,00
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Energia
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoEnergia">
+
+                            R$ 0,00
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Máquina
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoMaquina">
+
+                            R$ 0,00
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha linha-total">
+
+                        <span class="linha-nome">
+                            CUSTO TOTAL
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoTotal">
+
+                            R$ 0,00
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Tempo de impressão
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoTempo">
+
+                            0 minutos
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Margem de lucro
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoMargem">
+
+                            99%
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESTAQUES -->
+
+                <div class="destaques">
+
+
+                    <div class="destaque">
+
+                        <h3>
+                            VALOR A COBRAR
+                        </h3>
+
+                        <div
+                            class="valor-destaque"
+                            id="valorCobrar">
+
+                            R$ 0,00
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="destaque">
+
+                        <h3>
+                            LUCRO ESTIMADO
+                        </h3>
+
+                        <div
+                            class="valor-destaque"
+                            id="lucro">
+
+                            R$ 0,00
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+
+        <!-- RODAPÉ -->
+
+        <footer>
+
+            Lumiar 3D
+            <strong>•</strong>
+            Calculadora de Preços
+            <strong>•</strong>
+            Versão 1.0
+
+        </footer>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/calculadora.js"></script>
+
+</body>
+
+</html>

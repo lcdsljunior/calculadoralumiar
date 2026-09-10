@@ -150,6 +150,26 @@ function calcular() {
 
 
     // ----------------------------------------------
+    // PEGAR EMBALAGEM
+    // ----------------------------------------------
+
+    const embalagemInformada =
+        converterNumero(
+            document.getElementById(
+                "embalagem"
+            ).value
+        );
+
+
+    // Se estiver vazio, considera R$ 0,00
+
+    const embalagem =
+        isNaN(embalagemInformada)
+            ? 0
+            : embalagemInformada;
+
+
+    // ----------------------------------------------
     // PEGAR MARGEM
     // ----------------------------------------------
 
@@ -162,7 +182,7 @@ function calcular() {
 
 
     // ----------------------------------------------
-    // VALIDAÇÃO
+    // VALIDAÇÃO DO FILAMENTO
     // ----------------------------------------------
 
     if (
@@ -183,6 +203,10 @@ function calcular() {
     }
 
 
+    // ----------------------------------------------
+    // VALIDAÇÃO DAS GRAMAS
+    // ----------------------------------------------
+
     if (
         isNaN(gramas) ||
         gramas <= 0
@@ -201,6 +225,10 @@ function calcular() {
     }
 
 
+    // ----------------------------------------------
+    // VALIDAÇÃO DO TEMPO
+    // ----------------------------------------------
+
     if (
         isNaN(minutos) ||
         minutos <= 0
@@ -212,6 +240,27 @@ function calcular() {
 
         document
             .getElementById("tempo")
+            .focus();
+
+        return;
+
+    }
+
+
+    // ----------------------------------------------
+    // VALIDAÇÃO DA EMBALAGEM
+    // ----------------------------------------------
+
+    if (
+        embalagem < 0
+    ) {
+
+        mostrarErro(
+            "O gasto com embalagem não pode ser negativo."
+        );
+
+        document
+            .getElementById("embalagem")
             .focus();
 
         return;
@@ -265,7 +314,8 @@ function calcular() {
     const custoTotal =
         custoFilamento +
         custoEnergia +
-        custoMaquina;
+        custoMaquina +
+        embalagem;
 
 
     // ----------------------------------------------
@@ -317,6 +367,12 @@ function calcular() {
 
 
     document.getElementById(
+        "resultadoEmbalagem"
+    ).textContent =
+        moeda(embalagem);
+
+
+    document.getElementById(
         "resultadoTotal"
     ).textContent =
         moeda(custoTotal);
@@ -354,6 +410,10 @@ function calcular() {
 
 function limpar() {
 
+    // ----------------------------------------------
+    // LIMPAR CAMPOS
+    // ----------------------------------------------
+
     document.getElementById(
         "filamento"
     ).value = "";
@@ -369,14 +429,23 @@ function limpar() {
     ).value = "";
 
 
-    // Voltar para 99%
+    document.getElementById(
+        "embalagem"
+    ).value = "";
+
+
+    // ----------------------------------------------
+    // VOLTAR PARA 99%
+    // ----------------------------------------------
 
     document.getElementById(
         "margemLucro"
     ).value = "0.99";
 
 
-    // Resultados
+    // ----------------------------------------------
+    // RESULTADOS
+    // ----------------------------------------------
 
     document.getElementById(
         "resultadoFilamento"
@@ -392,6 +461,12 @@ function limpar() {
 
     document.getElementById(
         "resultadoMaquina"
+    ).textContent =
+        "R$ 0,00";
+
+
+    document.getElementById(
+        "resultadoEmbalagem"
     ).textContent =
         "R$ 0,00";
 
@@ -426,8 +501,16 @@ function limpar() {
         "R$ 0,00";
 
 
+    // ----------------------------------------------
+    // ESCONDER ERRO
+    // ----------------------------------------------
+
     esconderErro();
 
+
+    // ----------------------------------------------
+    // FOCO
+    // ----------------------------------------------
 
     document
         .getElementById("filamento")

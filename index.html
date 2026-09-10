@@ -23,7 +23,11 @@
 
         <header class="header">
 
-            <img src="imagens/logo.png" alt="Lumiar 3D" class="logo-imagem">
+            <img
+                src="imagens/logo.png"
+                alt="Lumiar 3D"
+                class="logo-imagem"
+            >
 
             <div class="linha-rosa"></div>
 
@@ -158,6 +162,8 @@
                 <div class="configuracoes">
 
 
+                    <!-- ENERGIA -->
+
                     <div class="config">
 
                         <strong>
@@ -171,6 +177,8 @@
                     </div>
 
 
+                    <!-- MÁQUINA -->
+
                     <div class="config">
 
                         <strong>
@@ -180,6 +188,33 @@
                         <span>
                             Máquina/h
                         </span>
+
+                    </div>
+
+
+                    <!-- EMBALAGEM -->
+
+                    <div class="config config-embalagem">
+
+                        <label for="embalagem">
+                            Gasto com embalagem
+                        </label>
+
+                        <div class="input-embalagem">
+
+                            <span>
+                                R$
+                            </span>
+
+                            <input
+                                type="text"
+                                id="embalagem"
+                                placeholder="0,00"
+                                inputmode="decimal"
+                                autocomplete="off"
+                            >
+
+                        </div>
 
                     </div>
 
@@ -311,6 +346,8 @@
                 <div class="resultado-linhas">
 
 
+                    <!-- FILAMENTO -->
+
                     <div class="linha">
 
                         <span class="linha-nome">
@@ -327,6 +364,8 @@
 
                     </div>
 
+
+                    <!-- ENERGIA -->
 
                     <div class="linha">
 
@@ -345,6 +384,8 @@
                     </div>
 
 
+                    <!-- MÁQUINA -->
+
                     <div class="linha">
 
                         <span class="linha-nome">
@@ -361,6 +402,27 @@
 
                     </div>
 
+
+                    <!-- EMBALAGEM -->
+
+                    <div class="linha">
+
+                        <span class="linha-nome">
+                            Embalagem
+                        </span>
+
+                        <span
+                            class="linha-valor"
+                            id="resultadoEmbalagem">
+
+                            R$ 0,00
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- CUSTO TOTAL -->
 
                     <div class="linha linha-total">
 
@@ -379,6 +441,8 @@
                     </div>
 
 
+                    <!-- TEMPO -->
+
                     <div class="linha">
 
                         <span class="linha-nome">
@@ -395,6 +459,8 @@
 
                     </div>
 
+
+                    <!-- MARGEM -->
 
                     <div class="linha">
 
@@ -420,6 +486,8 @@
                 <div class="destaques">
 
 
+                    <!-- VALOR A COBRAR -->
+
                     <div class="destaque">
 
                         <h3>
@@ -436,6 +504,8 @@
 
                     </div>
 
+
+                    <!-- LUCRO -->
 
                     <div class="destaque">
 
@@ -467,9 +537,17 @@
         <footer>
 
             Lumiar 3D
-            <strong>•</strong>
+
+            <strong>
+                •
+            </strong>
+
             Calculadora de Preços
-            <strong>•</strong>
+
+            <strong>
+                •
+            </strong>
+
             Versão 1.0
 
         </footer>
